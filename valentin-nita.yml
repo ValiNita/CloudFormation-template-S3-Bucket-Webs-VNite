@@ -1,0 +1,33 @@
+---
+#######################################################################################################################
+# CF stack for S3 Bucket creation
+#######################################################################################################################
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  CF stack for S3 Bucket creation
+
+Resources:
+
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+    Properties:
+      BucketName: "ltrasca-access-control-play-ground"
+  
+  S3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AdminAccess
+            Effect: Allow
+            Principal:
+              AWS:
+                - !Join ['', ['arn:aws:iam::', !Ref 'AWS::AccountId', ':root']]
+            Action: "s3:*"
+            Resource:
+              - !Sub "arn:aws:s3:::${S3Bucket}"
+              - !Sub "arn:aws:s3:::${S3Bucket}/*"
+
