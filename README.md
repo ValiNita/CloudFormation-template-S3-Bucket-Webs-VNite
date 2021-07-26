@@ -18,3 +18,6 @@
           - DomainName
     Description: Name of S3 bucket to hold website content
  7. Am verificat in consola daca totul a fost updatat iar ca ultim pas am pus bifa la Read la tabul Permissions pentru public access.
+
+
+https://vali-bucket.s3.eu-west-1.amazonaws.com/vn-site.html
